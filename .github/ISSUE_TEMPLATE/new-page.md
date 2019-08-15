@@ -7,6 +7,4 @@ assignees: jmhrovat
 
 ---
 
-#Page name
-
-**Purpose:**
+# Purpose
