@@ -3,3 +3,6 @@ from django.shortcuts import render
 # Create your views here.
 def homepage(request):
     return render(request, 'base/homepage.html')
+
+def styleguide(request):
+    return render(request, 'base/styleguide.html')
