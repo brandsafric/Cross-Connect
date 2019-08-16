@@ -4,5 +4,5 @@ from base import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    path('styles', views.styleguide, name='styleguide')
+    path('styles/', views.styleguide, name='styleguide')
 ]
