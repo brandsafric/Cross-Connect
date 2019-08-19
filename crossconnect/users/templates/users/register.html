@@ -4,27 +4,15 @@
 
 {% load static %}
 
-
-<link rel="stylesheet" href="{% static 'base/homepage/homepage.css' %}">
-
 <div class="wrapper">
-  <div class="large_container">
-    <h3 class="homepage_lead">The best app for measuring Church growth and engagement</h3>
-
-
-    <div class="wrapper">
-      <button class="primary_button" onclick="window.location.href='http://localhost:8000/user/greeting'">
-        <div class="button_text">
-          Start for Free
-        </div>
-      </button>
-    </div>
-    <div class="wrapper">
-      <div class="homepage_login_container flexbox">
-          <p class="homepage">Already have an account?</p>
-          <a href="user/greeting" class="homepage">Login here</a>
-      </div>
-    </div>
+<div class="large_container">
+  <div class="wrapper">
+    <h3>Let's get started</h3>
+  </div>
+  <div class="wrapper">
+  <input>First Name</input>
+  <input>Last Name</input>
+  </div>
 </div>
-
+</div>
 {% endblock %}
