@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #packages
+    'coverage',
+
     # custom apps
     'church.apps.ChurchConfig',
     'base.apps.BaseConfig',
