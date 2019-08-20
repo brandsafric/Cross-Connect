@@ -10,9 +10,37 @@
     <h3>Let's get started</h3>
   </div>
   <div class="wrapper">
-  <input>First Name</input>
-  <input>Last Name</input>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.errors }}
+      {{ form.non_field_errors }}
+      {{ form.first_name.errors }}
+      <label for="{{ form.first_name.id_for_label }}" class="field_label">First Name</label>
+      <div class="fieldWrapper"> {{ form.first_name }}</div>
+      <br>
+      {{ form.last_name.errors }}
+      <label for="{{ form.last_name.id_for_label }}" class="field_label">Last Name</label>
+      <div class="fieldWrapper"> {{ form.last_name }}</div>
+      <br>
+      {{ form.email.errors }}
+      <label for="{{ form.email.id_for_label }}" class="field_label">Email</label>
+      <div class="fieldWrapper"> {{ form.email }}</div>
+      <br>
+      <label for="{{ form.password1.id_for_label }}" class="field_label">Password1</label>
+      <div class="fieldWrapper"> {{ form.password1 }}</div>
+      <br>
+      <label for="{{ form.password2.id_for_label }}" class="field_label">Password2</label>
+      <div class="fieldWrapper"> {{ form.password2 }}</div>
+      <br>
+
+      <div class="primary_wrapper">
+        <button class="primary_button" type="submit">Church</button>
+      </div>
+    </form>
   </div>
 </div>
 </div>
+
+
+
 {% endblock %}
