@@ -5,22 +5,16 @@ from django import forms
 
 # Create your views here.
 def register(request):
-    print(request)
     if request.method == "POST":
-        print('Method is Post')
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            print("Form is valid")
             form.save()
             new_user = authenticate(email=form.cleaned_data['email'],
                                     password=form.cleaned_data['password1'],
                                     )
             login(request, new_user)
             return redirect('homepage')
-        else:
-            print(form.errors)
     else:
-        print("Not valid")
         form = CustomUserCreationForm()
 
     context = {
