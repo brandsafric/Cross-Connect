@@ -1,13 +1,15 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-
-# Create your tests here.
+from users.forms import CustomUserCreationForm
 
 User = get_user_model()
 
 class CustomUserTestCase(TestCase):
 
     def test_create_user(self):
+        """
+        Tests whether CustomUser model is functional
+        """
         data_dict = {
             'email':'test@email.com',
             'password': 'password',
