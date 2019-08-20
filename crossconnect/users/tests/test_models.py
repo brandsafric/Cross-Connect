@@ -6,7 +6,7 @@ User = get_user_model()
 
 class CustomUserTestCase(TestCase):
 
-    def test_create_user(self):
+    def create_user(self):
         """
         Tests whether CustomUser model is functional
         """
@@ -18,4 +18,10 @@ class CustomUserTestCase(TestCase):
             'is_pastor': 'True'
         }
         user = User.objects.create(**data_dict)
+        self.assertEqual(user.pk, user.id)
+        return user
+
+    def test_create_user(self):
+        user = self.create_user()
+        self.assertTrue(isinstance(user, User))
         self.assertEqual(user.pk, user.id)

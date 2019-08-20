@@ -41,11 +41,11 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=200)
     # profile_image = models.ImageField(upload_to="users/profile_pic", blank=True)
     is_pastor = models.BooleanField(default=True)
-    # home_church = models.ForeignKey(
-    #     'Church',
-    #     on_delete="CASCADE",
-    #     blank=True,
-    #     null=True)
+    home_church = models.ForeignKey(
+        'church.Church',
+        on_delete="CASCADE",
+        blank=True,
+        null=True)
 
     username = None
     email = models.EmailField(_('email address'), unique=True)
