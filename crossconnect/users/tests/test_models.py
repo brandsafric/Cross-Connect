@@ -8,7 +8,7 @@ class CustomUserTestCase(TestCase):
 
     def test_create_user(self):
         """
-        Tests whether customuser model is functional
+        Tests whether CustomUser model is functional
         """
         data_dict = {
             'email':'test@email.com',
