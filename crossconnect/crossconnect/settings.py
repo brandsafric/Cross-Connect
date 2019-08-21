@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #packages
     'coverage',
+    'model_mommy',
 
     # custom apps
     'base.apps.BaseConfig',
