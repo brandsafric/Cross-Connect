@@ -42,12 +42,13 @@ INSTALLED_APPS = [
     'coverage',
 
     # custom apps
-    'church.apps.ChurchConfig',
     'base.apps.BaseConfig',
+    'church.apps.ChurchConfig',
+    'crm.apps.CrmConfig',
     'users.apps.UsersConfig'
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser' # new
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
