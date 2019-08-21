@@ -98,7 +98,7 @@
 <p id="t3" class="stm run hide_run"><span class="key">from</span> <span class="nam">django</span><span class="op">.</span><span class="nam">contrib</span><span class="op">.</span><span class="nam">auth</span> <span class="key">import</span> <span class="nam">authenticate</span><span class="op">,</span> <span class="nam">login</span><span class="strut">&nbsp;</span></p>
 <p id="t4" class="stm run hide_run"><span class="key">from</span> <span class="nam">django</span> <span class="key">import</span> <span class="nam">forms</span><span class="strut">&nbsp;</span></p>
 <p id="t5" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t6" class="stm run hide_run"><span class="key">def</span> <span class="nam">register</span><span class="op">(</span><span class="nam">request</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t6" class="stm run hide_run"><span class="key">def</span> <span class="nam">add_user</span><span class="op">(</span><span class="nam">request</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t7" class="stm run hide_run">    <span class="key">if</span> <span class="nam">request</span><span class="op">.</span><span class="nam">method</span> <span class="op">==</span> <span class="str">"POST"</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t8" class="stm run hide_run">        <span class="nam">form</span> <span class="op">=</span> <span class="nam">CustomUserCreationForm</span><span class="op">(</span><span class="nam">request</span><span class="op">.</span><span class="nam">POST</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t9" class="stm run hide_run">        <span class="key">if</span> <span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
@@ -115,7 +115,7 @@
 <p id="t20" class="pln">        <span class="str">'form'</span><span class="op">:</span> <span class="nam">form</span><span class="strut">&nbsp;</span></p>
 <p id="t21" class="pln">    <span class="op">}</span><span class="strut">&nbsp;</span></p>
 <p id="t22" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t23" class="stm run hide_run">    <span class="key">return</span> <span class="nam">render</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">'users/register.html'</span><span class="op">,</span> <span class="nam">context</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t23" class="stm run hide_run">    <span class="key">return</span> <span class="nam">render</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">'users/add_user.html'</span><span class="op">,</span> <span class="nam">context</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -126,7 +126,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.4</a>,
-            created at 2019-08-20 21:36
+            created at 2019-08-21 12:44
         </p>
     </div>
 </div>

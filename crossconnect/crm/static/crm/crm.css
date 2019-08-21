@@ -132,10 +132,13 @@
 
 #myTable th, #myTable td {
   text-align: left;
+  padding: 0;
+
 }
 
 #myTable tr {
   border-bottom: 1px solid #ddd;
+  height: 53px;
 }
 
 #myTable tr.header, #myTable tr:hover {
