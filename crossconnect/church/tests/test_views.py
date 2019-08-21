@@ -1,12 +1,9 @@
-from django.test import TestCase, Client
+from crossconnect.tests import GlobalTestCase
 from django.urls import reverse
 from users.views import *
 
 
-class ChurchViewsTestCase(TestCase):
-
-    def setUp(self):
-        self.client = Client()
+class ChurchViewsTestCase(GlobalTestCase):
 
     def test_add_church_view(self):
         response = self.client.get(reverse('add_church'))

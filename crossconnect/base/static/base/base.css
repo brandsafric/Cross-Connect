@@ -67,6 +67,24 @@ p {
   background-color: #BD10E0;
 }
 
+.check-container {
+  display: block;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #565656;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-top: 13px;
+}
+.check-container input[type='checkbox'] {
+  opacity: 0;
+}
+
+.checkbox-container input[type='checkbox']:focus + label::before {
+  outline: blue;
+}
+
 @media only screen and (min-width: 780px) {
 
   .large_container {

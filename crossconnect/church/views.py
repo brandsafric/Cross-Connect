@@ -20,7 +20,7 @@ def add_church(request):
         form = ChurchCreateForm()
 
     context = {
-    'form': form
+        'form': form
     }
 
     return render(request, 'church/add_church.html', context)

@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'crm/crm.css' %}">
+
+
+
+
+<html>
+<body>
+<div class="contact_row">
+  <p>{{contact.first_name}} {{contact.last_name}}<p>
+</div>
+
+<form action="{% url 'create_interaction' contact.id %}" method="post">
+{% csrf_token %}
+
+{{ form.type }}
+{{ form.date }}
+{{ form.notes }}
+
+<div class="submit-container">
+  <input type="submit" value="Add" class="submit">
+</div>
+{% endblock %}

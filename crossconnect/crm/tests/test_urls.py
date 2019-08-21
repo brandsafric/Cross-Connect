@@ -23,5 +23,3 @@ class TestCrmURLs(TestCase):
         response = self.client.post('/app/contacts/add', form_data)
         self.assertEqual(request.status_code, 200)
         self.assertEqual(response.status_code, 302)
-
-    
