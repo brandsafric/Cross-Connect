@@ -3,7 +3,7 @@ from church.forms import ChurchCreateForm
 
 class ChurchForms(TestCase):
 
-    def test_add_form(self):
+    def test_add_church_form(self):
         """
         Tests whether add form is functional
         """
