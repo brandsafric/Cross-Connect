@@ -1,18 +1,16 @@
 from django.test import TestCase
-from users.forms import CustomUserCreationForm
+from church.forms import ChurchCreateForm
 
-# class CustomUserForms(TestCase):
-#
-#     def test_form(self):
-#         """
-#         Tests whether register form is functional
-#         """
-#         form_data = {
-#             'first_name': 'John_Test',
-#             'last_name': 'Doe_Test',
-#             'email': 'jdoe_test@gmail.com',
-#             'password1': 'passwordtest123',
-#             'password2': 'passwordtest123'
-#         }
-#         form = CustomUserCreationForm(data=form_data)
-#         self.assertTrue(form.is_valid())
+class ChurchForms(TestCase):
+
+    def test_add_form(self):
+        """
+        Tests whether add form is functional
+        """
+        form_data = {
+            'name': 'Church',
+            'city': 'Place',
+            'state': 'Larger place',
+        }
+        form = ChurchCreateForm(data=form_data)
+        self.assertTrue(form.is_valid())

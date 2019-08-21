@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'users/users.css' %}">
+
+<div style="margin-top:80px;" class="greeting_container">
+  <h3>Great. Let's get your church set up.</h3>
+</div>
+
+<form method="post" style="margin-top:15px;">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.name.errors }}
+  <label for="{{ form.name.id_for_label }}" class="field_label">Name</label>
+  <div class="fieldWrapper"> {{ form.name }}</div>
+  <br>
+  {{ form.city.errors }}
+  <label for="{{ form.city.id_for_label }}" class="field_label">City</label>
+  <div class="fieldWrapper"> {{ form.city }}</div>
+  <br>
+  {{ form.state.errors }}
+  <label for="{{ form.state.id_for_label }}" class="field_label">State</label>
+  <div class="fieldWrapper"> {{ form.state }}</div>
+  <br>
+
+  <div class="primary_wrapper">
+    <button style="margin-top:30px;" class="primary_button" type="submit">Services</button>
+  </div>
+</form>
+
+<div class="setup_progress_container">
+  <div>
+    <div class="progress_header_default">Profile</div>
+    <div class="progress_circle_complete">
+      <svg style="width:26px;height:26px" viewBox="0 0 24 24">
+        <path fill="#FFFFFF" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+      </svg>
+    </div>
+  </div>
+  <div>
+    <div class="progress_header_active">Church</div>
+    <div class="progress_circle_active"></div>
+  </div>
+  <div>
+    <div class="progress_header_default">Services</div>
+    <div class="progress_circle_default"></div>
+  </div>
+</div>
+
+
+
+{% endblock %}
