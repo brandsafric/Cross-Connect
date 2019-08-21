@@ -3,7 +3,7 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 from django import forms
 
-def register(request):
+def add_user(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -17,7 +17,7 @@ def register(request):
         form = CustomUserCreationForm()
 
     context = {
-    'form': form
+        'form': form
     }
 
-    return render(request, 'users/register.html', context)
+    return render(request, 'users/add_user.html', context)

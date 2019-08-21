@@ -2,9 +2,20 @@ from django.test import TestCase, Client
 
 class TestUsersURLs(TestCase):
 
-    def test_register(self):
+    def test_add_user(self):
         """
-        Tests whether register url is functional
+        Tests whether users urls are functional
         """
-        response = self.client.get('/user/register')
-        self.assertEqual(response.status_code, 200)
+
+        form_data = {
+            'first_name': 'Joe',
+            'last_name': 'Schmow',
+            'email': 'joe@gmail.com',
+            'password1': 'password123',
+            'password2': 'password123'
+        }
+
+        request = self.client.get('/user/register')
+        response = self.client.post('/user/register', form_data)
+        self.assertEqual(request.status_code, 200)
+        self.assertEqual(response.status_code, 302)

@@ -4,7 +4,6 @@ from users.views import *
 
 
 class UsersViewsTestCase(TestCase):
-
-    def test_register_get_view(self):
-        response = self.client.get(reverse('register'))
-        self.assertTemplateUsed(template_name='register.html')
+    def test_add_user_view(self):
+        response = self.client.get(reverse('add_user'))
+        self.assertTemplateUsed(template_name='add_user.html')
