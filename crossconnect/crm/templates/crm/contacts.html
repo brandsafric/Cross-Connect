@@ -1,0 +1,124 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'crm/crm.css' %}">
+
+
+
+  <div class="crm_control_bar">
+  <div class="select_all_container">
+    <label class="check-container">
+      <input type="checkbox" checked="checked" onclick="selectAll();primaryVisible();" id="selectAll">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+    <input class="search_box" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+    <div class="filter">
+      <svg style="filter" viewBox="0 0 25 25">
+        <path fill="#707070" d="M15,19.88C15.04,20.18 14.94,20.5 14.71,20.71C14.32,21.1 13.69,21.1 13.3,20.71L9.29,16.7C9.06,16.47 8.96,16.16 9,15.87V10.75L4.21,4.62C3.87,4.19 3.95,3.56 4.38,3.22C4.57,3.08 4.78,3 5,3V3H19V3C19.22,3 19.43,3.08 19.62,3.22C20.05,3.56 20.13,4.19 19.79,4.62L15,10.75V19.88M7.04,5L11,10.06V15.58L13,17.58V10.05L16.96,5H7.04Z" />
+      </svg>
+    </div>
+  </div>
+
+
+
+<table id="myTable">
+
+{% for contact in contacts %}
+    <tr class="crm_row" >
+      <td >
+        <label class="check-container">
+          <input type="checkbox" checked="checked" onclick="primaryVisible()" class="contact_ck" name="{{contact.id}}">
+          <span class="checkmark"></span>
+        </label>
+      </td>
+        <td onclick="window.location='http://localhost:8000/Relations/{{contact.id}}'">
+          <p>{{ contact.first_name }}  {{ contact.last_name }}</p>
+        </td>
+    </tr>
+
+
+{% endfor %}
+
+
+</table>
+
+
+<!-- <button class="primary_button edit_button">+</button>
+<a> -->
+
+
+
+
+<!-- TODO: Move this function to JS file -->
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function primaryVisible() {
+  var isChecked = $("input[type=checkbox]").is(":checked");
+  if(isChecked) {
+      document.getElementById("plus_button").style.display = "none";
+      document.getElementById("edit_button").style.display = "block";
+    } else {
+      document.getElementById("plus_button").style.display = "block";
+      document.getElementById("edit_button").style.display = "none";
+    }
+  }
+
+function selectAll() {
+  var input, checkboxes;
+  input = document.getElementById("selectAll");
+  checkboxes = document.getElementsByTagName('input');
+  if (input.checked == true) {
+    for (var i=0; i<checkboxes.length; i++) {
+      if (checkboxes[i].type == 'checkbox') {
+        checkboxes[i].checked = true;
+      }
+    }
+  } else {
+    for (var i=0; i<checkboxes.length; i++) {
+      if (checkboxes[i].type == 'checkbox') {
+        checkboxes[i].checked = false;
+      }
+    }
+  }
+}
+
+function attendancePage() {
+  var checkboxes = document.getElementsByClassName('contact_ck');
+  var checked = "";
+  for (var i=0; i<checkboxes.length; i++) {
+    if ((checkboxes[i].type == 'checkbox') && (checkboxes[i].checked == true) && (checkboxes[i].offsetParent != null)){
+      checked = checked + "&" + checkboxes[i].name;
+    }
+  }
+
+  window.location.href = 'http://localhost:8000/app/church/service_select/' + checked;
+}
+</script>
+
+{% endblock %}
+
+
+<script type="text/javascript" src="{% static 'crm/crm.js' %}"></script>

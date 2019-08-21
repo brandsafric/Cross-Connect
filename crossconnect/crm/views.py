@@ -1,6 +1,23 @@
 from django.shortcuts import render, redirect
 from .forms import ContactCreateForm
 from .models import Contact
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def contacts(request):
+
+    user=request.user
+    church = user.home_church
+    contacts = Contact.objects.filter(owner=church)
+
+    context = {
+        "contacts": contacts
+    }
+
+    return render(request, 'crm/contacts.html', context)
+
+
 
 def add_contact(request):
     user = request.user

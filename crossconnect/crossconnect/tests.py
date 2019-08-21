@@ -7,6 +7,8 @@ class GlobalTestCase(TestCase):
 
     def setUp(self):
         self.user = mommy.make(CustomUser)
+        self.user.save()
+        self.client.force_login(self.user)
         self.church = mommy.make(Church)
         self.service_template = mommy.make(ServiceTemplate)
 
