@@ -3,7 +3,7 @@ from church.models import Church, ServiceTemplate
 
 class ChurchTestCase(TestCase):
 
-    def _create_church(self):
+    def create_church(self):
         data_dict = {
             'name':'Test Church',
             'city': 'Redlands',
@@ -11,7 +11,7 @@ class ChurchTestCase(TestCase):
         }
         return Church.objects.create(**data_dict)
 
-    def _create_service_template(self, church):
+    def create_service_template(self, church):
         data_dict = {
             'church': church,
             'name': 'Service A',
@@ -21,10 +21,10 @@ class ChurchTestCase(TestCase):
         return ServiceTemplate.objects.create(**data_dict)
 
     def test_create_church(self):
-        church = self._create_church()
+        church = self.create_church()
         self.assertEqual(church.pk, church.id)
 
     def test_create_service_template(self):
-        church = self._create_church()
-        service = self._create_service_template(church)
+        church = self.create_church()
+        service = self.create_service_template(church)
         self.assertEqual(service.pk, service.id)

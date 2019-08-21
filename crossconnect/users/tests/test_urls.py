@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 
 class TestUsersURLs(TestCase):
 
-    def test_register_user(self):
+    def test_add_user(self):
         """
         Tests whether users urls are functional
         """
