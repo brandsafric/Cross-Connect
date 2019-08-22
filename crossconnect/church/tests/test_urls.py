@@ -32,14 +32,8 @@ class TestChurchURLs(TestCase):
             'time': '08:00:00',
             'day': 6
         }
-<<<<<<< Updated upstream
+
         request = self.client.get('/app/church/services/add')
         response = self.client.post('/app/church/services/add', form_data)
-=======
-
-
-        request = self.client.get('/app/church/services/templates/add')
-        response = self.client.post('/app/church/services/templates/add', form_data)
->>>>>>> Stashed changes
         self.assertEqual(request.status_code, 200)
         self.assertEqual(response.status_code, 302)
