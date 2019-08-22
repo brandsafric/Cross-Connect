@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from church.forms import ChurchCreateForm, ServiceTemplateCreateForm
-from .models import Church, ServiceTemplate
+from church.forms import ChurchCreateForm, ServiceTemplateCreateForm, ServiceCreateForm
+from .models import Church, ServiceTemplate, Service
 
 
 # Create your views here.
@@ -47,3 +47,22 @@ def add_service_template(request):
     }
 
     return render(request, 'church/add_service_template.html', context)
+
+def add_service(request):
+    if request.method == 'POST':
+        form = ServiceCreateForm(request.POST, user=request.user)
+
+        if form.is_valid():
+            obj = Service()
+            obj.template = form.cleaned_data['template']
+            obj.attendance_count = form.cleaned_data['count']
+            obj.date = form.cleaned_data['date']
+            obj.save()
+            return redirect('homepage')
+
+    form = ServiceCreateForm(user=request.user)
+    context = {
+        "form": form
+    }
+
+    return render(request, 'church/add_service.html', context)

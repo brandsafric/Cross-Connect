@@ -22,3 +22,8 @@ class ServiceTemplate(models.Model):
     name = models.CharField(max_length=200, blank=True)
     time = models.TimeField()
     day = models.IntegerField(choices=DAYS_OF_WEEK)
+
+class Service(models.Model):
+    template = models.ForeignKey(ServiceTemplate, on_delete="CASCADE")
+    attendance_count = models.IntegerField()
+    date = models.DateField()
