@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Avg
 from church.forms import ChurchCreateForm, ServiceTemplateCreateForm, ServiceCreateForm
 from .models import Church, ServiceTemplate, Service
 
@@ -66,3 +67,25 @@ def add_service(request):
     }
 
     return render(request, 'church/add_service.html', context)
+
+def service_template(request, id):
+
+
+    template = ServiceTemplate.objects.get(pk=id)
+    services = Service.objects.filter(template=template).order_by('-date')
+
+    for service in services:
+        print(service.attendance_count)
+    average = services.aggregate(Avg('attendance_count'))
+    average_attendance = int(average['attendance_count__avg'])
+    print('Total')
+    print(average_attendance)
+
+
+    context = {
+        "template": template,
+        "services": services,
+        "average_attendance": average_attendance
+    }
+
+    return render(request, 'church/service_detail.html', context)

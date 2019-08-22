@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'users/users.css' %}">
+
+<div style="margin-top:80px;" class="greeting_container">
+  <h3>{{ template.name }}</h3>
+</div>
+
+<h3>Average attendance: {{ average_attendance }}
+
+
+
+
+{% endblock %}
