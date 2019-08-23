@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.db.models import Avg
 from church.forms import ChurchCreateForm, ServiceTemplateCreateForm, ServiceCreateForm
 from .models import Church, ServiceTemplate, Service
+import datetime
+
+import json
 
 
 # Create your views here.
@@ -74,18 +77,25 @@ def service_template(request, id):
     template = ServiceTemplate.objects.get(pk=id)
     services = Service.objects.filter(template=template).order_by('-date')
 
-    for service in services:
-        print(service.attendance_count)
     average = services.aggregate(Avg('attendance_count'))
     average_attendance = int(average['attendance_count__avg'])
-    print('Total')
-    print(average_attendance)
 
+    if len(services) > 1:
+        attendance_delta = services[0].attendance_count - services[1].attendance_count
+    else:
+        attendance_delta = None
+
+    data_array = [['Date', 'Attendance']]
+
+    for service in services:
+        data_array.append([service.date.strftime('%m/%d'), service.attendance_count])
 
     context = {
         "template": template,
         "services": services,
-        "average_attendance": average_attendance
+        "average_attendance": average_attendance,
+        "attendance_delta": attendance_delta,
+        "data_array": json.dumps(data_array)
     }
 
     return render(request, 'church/service_detail.html', context)
