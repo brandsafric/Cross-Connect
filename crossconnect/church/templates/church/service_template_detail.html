@@ -1,0 +1,84 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="{% static 'church/church.js' %}"></script>
+
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  var djangoData = {{ data_array|safe}}
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable(djangoData);
+    var showEvery = parseInt(data.getNumberOfRows() / 3);
+    var options = {
+      // title: '',
+      curveType: 'function',
+      legend: { position: 'none' },
+      backgroundColor: '#FFFFFF',
+      chartArea: {'width': '85%', 'height': '70%'},
+      vAxis: {
+        viewWindowMode: "explicit",
+        viewWindow:{ min: 0 }},
+
+      hAxis: {
+        showTextEvery: showEvery,
+
+      },
+
+      colors: ['#B413FE'],
+      lineWidth: 3,
+      vAxes: {0:
+        {gridlines:
+          {color: 'transparent'}
+        }
+      }
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    chart.draw(data, options);
+  }
+</script>
+
+<!-- textStyle: {
+  fontName: 'Calibri',
+  fontSize: '16'
+} -->
+
+<link rel="stylesheet" href="{% static 'users/users.css' %}">
+
+<div class="dashboard_header">
+  <h1>{{ template.name }}</h1>
+</div>
+
+
+<!-- Chart controls -->
+<div class="date_selection_pane">
+  <div class="date_selection_item active">1m</div>
+  <div class="date_selection_item default">3m</div>
+  <div class="date_selection_item default">6m</div>
+  <div class="date_selection_item default">1y</div>
+  <div class="date_selection_item default">All</div>
+
+  <div id="view_stats">Stats <img src="{% static 'church/img/triangle.svg' %}"></img></div>
+</div>
+
+<div id="curve_chart" style="width: 100%; height: 100%" class="chart"></div>
+
+<h2 style="text-align:center;margin-bottom:25px;">Services</h2>
+
+<div class="dashboard_services">
+{% for service in services %}
+
+
+<div class="services_row">{{ service.date }}</div>
+{% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}

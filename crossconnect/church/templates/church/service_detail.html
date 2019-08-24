@@ -4,77 +4,19 @@
 
 {% load static %}
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      var djangoData = {{ data_array|safe}}
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(djangoData);
-        var showEvery = parseInt(data.getNumberOfRows() / 3);
-        var options = {
-          // title: '',
-          curveType: 'function',
-          legend: { position: 'none' },
-          backgroundColor: '#FFFFFF',
-          chartArea: {'width': '85%', 'height': '70%'},
-          vAxis: {viewWindowMode: "explicit", viewWindow:{ min: 0 }},
-          hAxis: {showTextEvery: showEvery},
-          colors: ['purple']
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-
 
 
 <link rel="stylesheet" href="{% static 'users/users.css' %}">
 
-<div class="wrapper dashboard_header">
-  <h2>{{ template.name }}</h2>
-</div>
-
-
-<div class="large_container">
-  <div class="dashboard_items_container">
-    <div class="dashboard_item">
-      <p class="dashboard_label">Average</p>
-      <br>
-      <p class="dashboard_value">{{ average_attendance }}</p>
-    </div>
-
-    <div class="dashboard_item">
-      <p class="dashboard_label">Change</p>
-      <br>
-      <p id="attendance_delta" class="dashboard_value">{{ attendance_delta }}</p>
-    </div>
-  </div>
 
 
 
-<div id="curve_chart" style="width: 100%; height: 100%" class="chart"></div>
 
 
-<div class="dashboard_header">
-  <h3 style="margin-top: 25px;">Services</h3>
-</div>
 
-<div class="dashboard_services">
 
-  {% for service in services %}
-  <div class="services_row">
-    <div class="service_row_title">
-      {{ service.date }}
-    </div>
-    <div class="service_row_count">
-      {{ service.attendance_count }}
-    </div>
-  </div>
 
-  {% endfor %}
-</div>
+
+
 
 {% endblock %}

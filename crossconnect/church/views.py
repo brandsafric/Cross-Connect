@@ -75,21 +75,25 @@ def service_template(request, id):
 
 
     template = ServiceTemplate.objects.get(pk=id)
-    services = Service.objects.filter(template=template).order_by('-date')
+    services = Service.objects.filter(template=template).order_by('date')
 
     average = services.aggregate(Avg('attendance_count'))
     average_attendance = int(average['attendance_count__avg'])
 
-    if len(services) > 1:
-        attendance_delta = services[0].attendance_count - services[1].attendance_count
-    else:
-        attendance_delta = None
+
 
     data_array = [['Date', 'Attendance']]
 
     for service in services:
         data_array.append([service.date.strftime('%m/%d'), service.attendance_count])
 
+    services = Service.objects.filter(template=template).order_by('-date')
+
+    if len(services) > 1:
+        attendance_delta = services[0].attendance_count - services[1].attendance_count
+    else:
+        attendance_delta = None
+        
     context = {
         "template": template,
         "services": services,
@@ -98,4 +102,7 @@ def service_template(request, id):
         "data_array": json.dumps(data_array)
     }
 
-    return render(request, 'church/service_detail.html', context)
+    return render(request, 'church/service_template_detail.html', context)
+
+def service_detail(request, id):
+    return render(request, 'church/service_detail.html')
