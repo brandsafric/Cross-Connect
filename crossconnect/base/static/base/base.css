@@ -2,7 +2,7 @@ body {
   background-color: #F4F4F4;
   margin: 0;
   color: #303030;
-  font-family: Roboto;
+  font-family: 'Calibri';
   font-size: 18px;
 
 }
@@ -23,6 +23,14 @@ h1 {
 p {
   font-size: 1em;
   display: inline-block;
+}
+
+.default {
+  color: #9B9B9B;
+}
+
+.active {
+  color: #B413FE;
 }
 
 .button_text {
@@ -89,67 +97,54 @@ p {
   box-shadow:  2px 5px 3px  #A9A9A9;
 }
 
-.dashboard_items_container {
+/* Dashboard Styles */
+
+.dashboard_header h1 {
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 25px;
+}
+
+.date_selection_pane {
+  margin-bottom: 16px;
+  margin-top: 25px;
+  height: 1.5em;
   display: flex;
+  width: 100%;
 }
 
-.dashboard_header h2, h3 {
-  text-align: center;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-
-.dashboard_item {
-  display: inline-block;
-  text-align: center;
-  width: 50%;
-}
-
-.dashboard_label {
-  margin-bottom: 5px;
+.date_selection_item {
+  font-size: 1em;
   font-weight: bold;
+  margin-left: 5%;
 }
 
-.dashboard_value {
-  text-align: center;
+#view_stats {
+  position: relative;
+  margin: 0 auto;
+  left: 9%;
+  font-size: 1em;
+  font-weight: bold;
+  color: #B413FE;
 }
-
-.dashboard_item p {
-  margin-top: 0px;
-  line-height: 0px;
-}
-/* .dashboard_value p {
-  text-align: right;
-} */
 
 .dashboard_services {
-  background-color: white;
-  width: 100%;
   box-shadow:  2px 5px 3px  #A9A9A9;
 }
 
 .services_row {
   display: block;
-  border-bottom: 2px darkgrey solid;
+  border-bottom: 1px darkgrey solid;
   padding-left: 20px;
   display: flex;
-  height: 40px;
-  padding-top: 20px;
+  height: 20px;
+  padding-top: .8em;
+  padding-bottom: .8em;
+  background-color: white;
+  font-size: .9em;
 }
 
 
-
-.service_row_title {
-  display: inline;
-  width: 45%;
-}
-
-.service_row_count {
-  text-align: right;
-  display: inline;
-  padding-right: 20px;
-  width: 55%;
-}
 
 
 
