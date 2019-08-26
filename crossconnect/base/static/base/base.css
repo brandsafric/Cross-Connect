@@ -25,6 +25,10 @@ p {
   display: inline-block;
 }
 
+.content {
+  /* padding-left: 270px; */
+}
+
 .default {
   color: #9B9B9B;
 }
@@ -43,14 +47,46 @@ p {
 .site_header {
   width: 100%;
   height: 4.17em;
-  background-image: linear-gradient(#9013FE, #C32AFF);
+  background-image: linear-gradient(#C442FF, #940DD2);
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  box-shadow:  0px 1px 3px  #A9A9A9;
 }
 
 .content {
+  margin-top: 4.5em;
   margin-left: 2.5%;
   margin-right: 2.5%;
 }
 
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #4A4A4A;
+  z-index: 1;
+  margin-left: 0px;
+  transition: margin-left .35s ease-in-out;
+
+}
+
+.sidebar_off {
+  margin-left: -280px;
+  transition: margin-left .35s ease-in-out;
+}
+
+.toggle {
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  width: 3.5em;
+  height: 3.5em;
+  background-color: white;
+  z-index: 1;
+}
 
 .homepage_lead {
   text-align: center;
@@ -94,7 +130,9 @@ p {
 }
 
 .chart {
-  box-shadow:  2px 5px 3px  #A9A9A9;
+  box-shadow:  2px 2px 3px  #A9A9A9;
+  width:100%;
+  height:100%;
 }
 
 /* Dashboard Styles */
@@ -144,12 +182,12 @@ p {
   font-size: .9em;
 }
 
+@media only screen and (min-width: 426px) {
+
+}
 
 
-
-
-
-@media only screen and (min-width: 780px) {
+@media only screen and (min-width: 1024px) {
 
   .large_container {
     margin-left: 10%;
@@ -160,5 +198,18 @@ p {
     width: 60%;
     margin-left: 20%;
   }
+
+  .sidebar {
+    position: fixed;
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  .content {
+    padding-left: 250px;
+  }
+
 
 }
