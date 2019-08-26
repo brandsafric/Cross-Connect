@@ -68,13 +68,13 @@ p {
   height: 100%;
   background-color: #4A4A4A;
   z-index: 1;
-  margin-left: 0px;
+  margin-left: -280px;
   transition: margin-left .35s ease-in-out;
 
 }
 
 .sidebar_off {
-  margin-left: -280px;
+  margin-left: 0px;
   transition: margin-left .35s ease-in-out;
 }
 
@@ -130,17 +130,40 @@ p {
 }
 
 .chart {
-  box-shadow:  2px 2px 3px  #A9A9A9;
+  box-shadow: 2px 2px 3px #A9A9A9;
   width:100%;
   height:100%;
+}
+
+.chart_toggle {
+  display: none;
+}
+
+.chart_settings_toggle {
+  display: none;
+}
+
+.chart_settings_section {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.chart_settings_section_header {
+  font-size: 1.61em;
+  font-weight: bold;
+}
+
+.chart_settings_section_value {
+  font-size: 1.2em;
 }
 
 /* Dashboard Styles */
 
 .dashboard_header h1 {
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
   margin-top: 25px;
+  
 }
 
 .date_selection_pane {
@@ -152,27 +175,22 @@ p {
 }
 
 .chart_settings_pane {
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 200px;
   background-color: white;
-  display: flex;
-  align-items: center;
   box-shadow:  2px 2px 3px  #A9A9A9;
   display: none;
 }
 
-.date_selection_item {
-  font-size: 1em;
-  font-weight: bold;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
+.chart_settings_toggle {
+  display: block;
 }
 
 .chart_settings_pane_header {
   width: 100%;
-  margin-top: 5px;
+  padding-top: 13px;
   margin-left: auto;
-  display: flex;
+  display: none;
   width: 100%;
   justify-content: center;
 }
@@ -185,6 +203,16 @@ p {
   font-weight: bold;
   color: #B413FE;
 }
+
+.date_selection_item {
+  font-size: 1em;
+  font-weight: bold;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  height: 20px;
+  width: 20px;
+}
+
 
 .dashboard_services {
   box-shadow:  2px 5px 3px  #A9A9A9;
@@ -207,12 +235,22 @@ p {
     width: 55%;
     display: inline-block;
     vertical-align: top;
+    display: inline-block;
 
   }
   .chart_settings_pane {
-    width: 43%;
-    height: 200px;
-    display: inline-block;
+    margin-left: 2%;
+    width: 41%;
+    display: block;
+  }
+
+  .chart_settings_pane_header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .chart_settings_section {
+    margin-top: 15px;
   }
   .date_selection_pane {
     display: none;
@@ -234,6 +272,8 @@ p {
 
   .sidebar {
     position: fixed;
+    display: block;
+    margin-left: 0;
   }
 
   .toggle {
@@ -243,6 +283,4 @@ p {
   .content {
     padding-left: 250px;
   }
-
-
 }
