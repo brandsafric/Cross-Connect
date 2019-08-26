@@ -19,18 +19,31 @@
       curveType: 'function',
       legend: { position: 'none' },
       backgroundColor: '#FFFFFF',
-      chartArea: {'width': '85%', 'height': '70%'},
+      chartArea: {
+        'width': '85%',
+        'height': '80%',
+        left: '15%',
+      },
       vAxis: {
         viewWindowMode: "explicit",
-        viewWindow:{ min: 0 }},
+        viewWindow:{ min: 0 },
+        textStyle : {
+          fontSize: 13,
+          fontName: 'Calibri'
+        },
+        baselineColor: 'none'
+      },
 
       hAxis: {
         showTextEvery: showEvery,
+        textStyle : {
+          fontSize: 12,
+          fontName: 'Calibri'
+        },
 
       },
-
       colors: ['#B413FE'],
-      lineWidth: 3,
+      lineWidth: 3.5,
       vAxes: {0:
         {gridlines:
           {color: 'transparent'}
@@ -39,6 +52,8 @@
     };
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
     chart.draw(data, options);
+    window.addEventListener("resize", drawChart);
+
   }
 </script>
 
@@ -57,19 +72,30 @@
   <div class="date_selection_item default">1y</div>
   <div class="date_selection_item default">All</div>
 
-  <div id="view_stats">Stats <img src="{% static 'church/img/triangle.svg' %}"></img></div>
+  <div id="view_stats" onclick="toggleChart()">Stats <img src="{% static 'church/img/triangle.svg' %}"></img></div>
 </div>
 
-<div id="curve_chart" class="chart"></div>
-<div class="chart_settings_pane">
-  <div class="chart_settings_pane_header">
-    <div class="date_selection_item active">1m</div>
-    <div class="date_selection_item default">3m</div>
-    <div class="date_selection_item default">6m</div>
-    <div class="date_selection_item default">1y</div>
-    <div class="date_selection_item default">All</div>
+<div style="display:flex">
+  <div id="curve_chart" class="chart"></div>
+  <div id="chart_settings_pane" class="chart_settings_pane">
+    <div class="chart_settings_pane_header">
+      <div class="date_selection_item active">1m</div>
+      <div class="date_selection_item default">3m</div>
+      <div class="date_selection_item default">6m</div>
+      <div class="date_selection_item default">1y</div>
+      <div class="date_selection_item default">All</div>
+    </div>
+    <div class="chart_settings_section">
+      <div class="chart_settings_section_header">Change</div>
+      <div class="chart_settings_section_value">30</div>
+    </div>
+    <div class="chart_settings_section">
+      <div class="chart_settings_section_header">Average</div>
+      <div class="chart_settings_section_value">11</div>
+    </div>
   </div>
 </div>
+
 
 <h2 style="text-align:center;margin-bottom:25px;">Services</h2>
 
@@ -81,6 +107,14 @@
 {% endfor %}
 </div>
 
+<script type="text/javascript">
+  function toggleChart() {
+    var chart = document.getElementById('curve_chart');
+    var settings = document.getElementById('chart_settings_pane');
+    chart.classList.toggle('chart_toggle');
+    settings.classList.toggle('chart_settings_toggle');
+  }
+</script>
 
 
 
