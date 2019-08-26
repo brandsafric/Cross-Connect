@@ -151,10 +151,30 @@ p {
   width: 100%;
 }
 
+.chart_settings_pane {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  box-shadow:  2px 2px 3px  #A9A9A9;
+  display: none;
+}
+
 .date_selection_item {
   font-size: 1em;
   font-weight: bold;
-  margin-left: 5%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.chart_settings_pane_header {
+  width: 100%;
+  margin-top: 5px;
+  margin-left: auto;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 #view_stats {
@@ -182,8 +202,21 @@ p {
   font-size: .9em;
 }
 
-@media only screen and (min-width: 426px) {
+@media only screen and (min-width: 500px) {
+  .chart {
+    width: 55%;
+    display: inline-block;
+    vertical-align: top;
 
+  }
+  .chart_settings_pane {
+    width: 43%;
+    height: 200px;
+    display: inline-block;
+  }
+  .date_selection_pane {
+    display: none;
+  }
 }
 
 
