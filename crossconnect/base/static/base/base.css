@@ -9,7 +9,7 @@ body {
 
 h3 {
   font-size: 1.61em;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 h2 {
@@ -159,11 +159,11 @@ p {
 
 /* Dashboard Styles */
 
-.dashboard_header h1 {
+.dashboard_header h2 {
   text-align: center;
   margin-bottom: 25px;
   margin-top: 25px;
-  
+
 }
 
 .date_selection_pane {
@@ -213,6 +213,9 @@ p {
   width: 20px;
 }
 
+.dashboard_services_container {
+  width: 100%;
+}
 
 .dashboard_services {
   box-shadow:  2px 5px 3px  #A9A9A9;
@@ -231,6 +234,10 @@ p {
 }
 
 @media only screen and (min-width: 500px) {
+
+  .dashboard_header h2 {
+    text-align: left;
+  }
   .chart {
     width: 55%;
     display: inline-block;
@@ -254,6 +261,11 @@ p {
   }
   .date_selection_pane {
     display: none;
+  }
+
+  .dashboard_services_container {
+    margin-left: 10%;
+    width: 80%;
   }
 }
 

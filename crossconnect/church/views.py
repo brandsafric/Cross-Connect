@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.db.models import Avg
 from church.forms import ChurchCreateForm, ServiceTemplateCreateForm, ServiceCreateForm
 from .models import Church, ServiceTemplate, Service
-import datetime
-
+from church.functions import *
 import json
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -73,32 +72,41 @@ def add_service(request):
 
 def service_template(request, id):
 
-
     template = ServiceTemplate.objects.get(pk=id)
-    services = Service.objects.filter(template=template).order_by('date')
+    all_services = Service.objects.filter(template=template).order_by('date')
 
-    average = services.aggregate(Avg('attendance_count'))
-    average_attendance = int(average['attendance_count__avg'])
+    one_month_service_count_average = get_service_count_date_range_average(30, all_services)
+    three_month_service_count_average = get_service_count_date_range_average(60, all_services)
+    six_month_service_count_average = get_service_count_date_range_average(180, all_services)
+    one_year_service_count_average = get_service_count_date_range_average(364, all_services)
 
-
+    one_month_service_count_change = get_service_count_date_range_change(30, all_services)
+    three_month_service_count_change = get_service_count_date_range_change(60, all_services)
+    six_month_service_count_change = get_service_count_date_range_change(180, all_services)
+    one_year_service_count_change = get_service_count_date_range_change(364, all_services)
 
     data_array = [['Date', 'Attendance']]
+    # one_month_data_array = data_array
+    # three_month_data_array = data_array
+    # six_month_data_array = data_array
+    # one_year_data_array = data_array
+    # all_data_array = data_array
 
-    for service in services:
-        data_array.append([service.date.strftime('%m/%d'), service.attendance_count])
+    data = list(all_services.values('date', 'attendance_count'))
+    data_json = JsonResponse(data, safe=False)
+    print(data)
+    # services = Service.objects.filter(template=template).order_by('-date')
 
-    services = Service.objects.filter(template=template).order_by('-date')
-
-    if len(services) > 1:
-        attendance_delta = services[0].attendance_count - services[1].attendance_count
+    if len(all_services) > 1:
+        attendance_delta = all_services[0].attendance_count - all_services[1].attendance_count
     else:
         attendance_delta = None
-        
+
     context = {
-        "template": template,
-        "services": services,
-        "average_attendance": average_attendance,
-        "attendance_delta": attendance_delta,
+        # "template": template,
+        # "services": services,
+        # "average_attendance": average_attendance,
+        # "attendance_delta": attendance_delta,
         "data_array": json.dumps(data_array)
     }
 
