@@ -10,7 +10,53 @@
 <script type="text/javascript">
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
-  var djangoData = {{ data_array|safe}}
+  var djangoData = {{ one_month.data|safe }};
+  var mobile_choices = document.getElementsByClassName('date_selection_item');
+
+  function resetItems() {
+    var mobile_choices = document.getElementsByClassName('date_selection_item');
+    Array.prototype.forEach.call(mobile_choices, function (el) {
+      el.classList.remove('active')
+    })
+  }
+
+  function drawOneMonthChart(elem) {
+    djangoData = {{ one_month.data|safe }};
+
+    resetItems();
+    elem.classList.add('active');
+
+    drawChart();
+  }
+
+  function drawThreeMonthChart(elem) {
+    djangoData = {{ three_month.data|safe }};
+    resetItems();
+    elem.classList.add('active');
+    drawChart();
+  }
+
+  function drawSixMonthChart(elem) {
+    djangoData = {{ six_month.data|safe }};
+    resetItems();
+    elem.classList.add('active');
+    drawChart();
+  }
+
+  function drawOneYearChart(elem) {
+    djangoData = {{ one_year.data|safe }};
+    resetItems();
+    elem.classList.add('active');
+    drawChart();
+  }
+
+  function drawAllTimeChart(elem) {
+    djangoData = {{ all_time.data|safe }};
+    resetItems();
+    elem.classList.add('active');
+    drawChart();
+  }
+
   function drawChart() {
     var data = google.visualization.arrayToDataTable(djangoData);
     var showEvery = parseInt(data.getNumberOfRows() / 3);
@@ -20,7 +66,7 @@
       legend: { position: 'none' },
       backgroundColor: '#FFFFFF',
       chartArea: {
-        'width': '85%',
+        'width': '80%',
         'height': '80%',
         left: '15%'
       },
@@ -58,7 +104,6 @@
   }
 </script>
 
-<link rel="stylesheet" href="{% static 'users/users.css' %}">
 
 <div class="dashboard_header">
   <h2>{{ template.name }}</h2>
@@ -67,11 +112,11 @@
 
 <!-- Chart controls -->
 <div class="date_selection_pane">
-  <div class="date_selection_item active">1m</div>
-  <div class="date_selection_item default">3m</div>
-  <div class="date_selection_item default">6m</div>
-  <div class="date_selection_item default">1y</div>
-  <div class="date_selection_item default">All</div>
+  <div id="one_month_mobile" class="date_selection_item default" onclick="drawOneMonthChart(this)">1m</div>
+  <div id="three_month_mobile" class="date_selection_item default" onclick="drawThreeMonthChart(this)">3m</div>
+  <div id="six_month_mobile" class="date_selection_item default" onclick="drawSixMonthChart(this)">6m</div>
+  <div id="one_year_mobile" class="date_selection_item default" onclick="drawOneYearChart(this)">1y</div>
+  <div id="all_time_mobile" class="date_selection_item default" onclick="drawAllTimeChart(this)">All</div>
 
   <div id="view_stats" onclick="toggleChart()">Stats <img src="{% static 'church/img/triangle.svg' %}"></img></div>
 </div>
@@ -80,19 +125,23 @@
   <div id="curve_chart" class="chart"></div>
   <div id="chart_settings_pane" class="chart_settings_pane">
     <div class="chart_settings_pane_header">
-      <div class="date_selection_item active">1m</div>
-      <div class="date_selection_item default">3m</div>
-      <div class="date_selection_item default">6m</div>
-      <div class="date_selection_item default">1y</div>
-      <div class="date_selection_item default">All</div>
+      <div class="date_selection_item default active" onclick="drawOneMonthChart(this)">1m</div>
+      <div class="date_selection_item default" onclick="drawThreeMonthChart(this)">3m</div>
+      <div class="date_selection_item default" onclick="drawSixMonthChart(this)">6m</div>
+      <div class="date_selection_item default" onclick="drawOneYearChart(this)">1y</div>
+      <div class="date_selection_item default" onclick="drawAllTimeChart(this)">All</div>
     </div>
     <div class="chart_settings_section">
       <div class="chart_settings_section_header">Change</div>
-      <div class="chart_settings_section_value">30</div>
+      <div class="chart_settings_section_value">
+        {{ one_month.change }}
+      </div>
     </div>
     <div class="chart_settings_section">
       <div class="chart_settings_section_header">Average</div>
-      <div class="chart_settings_section_value">11</div>
+      <div class="chart_settings_section_value">
+        {{ one_month.average }}
+      </div>
     </div>
   </div>
 </div>

@@ -3,7 +3,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link rel="shortcut icon" href="{% static 'base/logo.png' %}" />
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'base/base.css' %}">
 <link rel="stylesheet" href="{% static 'crm/crm.css' %}">
@@ -15,7 +14,7 @@
 <html>
 <body>
 
-<svg style="display: none">
+<svg style="display:none;">
   <symbol id="plus-icon" viewBox="0 0 24 24">
       <path fill="#FFFFFF" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
   </symbol>
@@ -43,7 +42,7 @@
 
 <script>
 function toggle() {
-    var sidebar = document.getElementById("sidebar")
+    var sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle('sidebar_off');
 }
 </script>
