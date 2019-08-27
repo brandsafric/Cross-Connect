@@ -4,6 +4,7 @@ from .models import Church, ServiceTemplate, Service
 from church.functions import *
 import json
 from django.http import JsonResponse
+from datetime import datetime
 
 
 # Create your views here.
@@ -72,42 +73,76 @@ def add_service(request):
 
 def service_template(request, id):
 
+
     template = ServiceTemplate.objects.get(pk=id)
     all_services = Service.objects.filter(template=template).order_by('date')
 
-    one_month_service_count_average = get_service_count_date_range_average(30, all_services)
-    three_month_service_count_average = get_service_count_date_range_average(60, all_services)
-    six_month_service_count_average = get_service_count_date_range_average(180, all_services)
-    one_year_service_count_average = get_service_count_date_range_average(364, all_services)
+    today = datetime.now()
+    one_month_delta = today + timedelta(-30)
+    three_month_delta = today + timedelta(-90)
+    six_month_delta = today + timedelta(-180)
+    one_year_delta = today + timedelta(-364)
 
-    one_month_service_count_change = get_service_count_date_range_change(30, all_services)
-    three_month_service_count_change = get_service_count_date_range_change(60, all_services)
-    six_month_service_count_change = get_service_count_date_range_change(180, all_services)
-    one_year_service_count_change = get_service_count_date_range_change(364, all_services)
+    one_month_range = get_services_date_range(all_services, today, one_month_delta)
+    three_month_range = get_services_date_range(all_services, today, three_month_delta)
+    six_month_range = get_services_date_range(all_services, today, six_month_delta)
+    one_year_range = get_services_date_range(all_services, today, one_year_delta)
+    # All services previously declared
 
-    data_array = [['Date', 'Attendance']]
-    # one_month_data_array = data_array
-    # three_month_data_array = data_array
-    # six_month_data_array = data_array
-    # one_year_data_array = data_array
-    # all_data_array = data_array
 
-    data = list(all_services.values('date', 'attendance_count'))
-    data_json = JsonResponse(data, safe=False)
-    print(data)
-    # services = Service.objects.filter(template=template).order_by('-date')
+    one_month_average = int(one_month_range.aggregate(Avg('attendance_count'))['attendance_count__avg'])
+    three_month_average = int(three_month_range.aggregate(Avg('attendance_count'))['attendance_count__avg'])
+    six_month_average = int(six_month_range.aggregate(Avg('attendance_count'))['attendance_count__avg'])
+    one_year_average = int(one_year_range.aggregate(Avg('attendance_count'))['attendance_count__avg'])
+    all_time_average = int(all_services.aggregate(Avg('attendance_count'))['attendance_count__avg'])
 
-    if len(all_services) > 1:
-        attendance_delta = all_services[0].attendance_count - all_services[1].attendance_count
-    else:
-        attendance_delta = None
+    one_month_change = get_service_count_date_range_change(one_month_range)
+    three_month_change = get_service_count_date_range_change(three_month_range)
+    six_month_change = get_service_count_date_range_change(six_month_range)
+    one_year_change = get_service_count_date_range_change(one_year_range)
+    all_time_change = get_service_count_date_range_change(all_services)
+
+
+    one_month_data = get_services_count_data(one_month_range)
+    three_month_data = get_services_count_data(three_month_range)
+    six_month_data = get_services_count_data(six_month_range)
+    one_year_data = get_services_count_data(one_year_range)
+    all_time_data = get_services_count_data(all_services)
+
+
+    one_month_data.insert(0, ['Date', 'Count'])
+    three_month_data.insert(0, ['Date', 'Count'])
+    six_month_data.insert(0, ['Date', 'Count'])
+    one_year_data.insert(0, ['Date', 'Count'])
+    all_time_data.insert(0, ['Date', 'Count'])
 
     context = {
-        # "template": template,
-        # "services": services,
-        # "average_attendance": average_attendance,
-        # "attendance_delta": attendance_delta,
-        "data_array": json.dumps(data_array)
+        'template': template,
+        'one_month': {
+            'change': one_month_change,
+            'average': one_month_average,
+            'data': json.dumps(one_month_data)
+        },
+        'three_month': {
+            'change': three_month_change,
+            'average': three_month_average,
+            'data': json.dumps(three_month_data)
+        },
+        'six_month': {
+            'change': six_month_change,
+            'average': six_month_average,
+            'data': json.dumps(six_month_data)
+        },
+        'one_year': {
+            'change': one_year_change,
+            'average': one_year_average,
+            'data': json.dumps(one_year_data)
+        },
+        'all_time': {
+            'change': all_time_change,
+            'average': all_time_average,
+            'data': json.dumps(all_time_data)
+        }
     }
 
     return render(request, 'church/service_template_detail.html', context)
