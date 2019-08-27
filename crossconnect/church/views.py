@@ -142,7 +142,9 @@ def service_template(request, id):
             'change': all_time_change,
             'average': all_time_average,
             'data': json.dumps(all_time_data)
-        }
+        },
+        'services': all_services
+
     }
 
     return render(request, 'church/service_template_detail.html', context)
