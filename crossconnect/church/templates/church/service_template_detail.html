@@ -12,11 +12,21 @@
   google.charts.setOnLoadCallback(drawChart);
   var djangoData = {{ one_month.data|safe }};
   var mobile_choices = document.getElementsByClassName('date_selection_item');
+  var chart_settings_values = document.getElementsByClassName('chart_settings_section_value');
+
+  var one_month_sections = document.getElementsByClassName('one_month_section');
+  var three_month_sections = document.getElementsByClassName('three_month_section');
+  var six_month_sections = document.getElementsByClassName('six_month_section');
+  var one_year_sections = document.getElementsByClassName('one_year_section');
+  var all_time_sections = document.getElementsByClassName('all_time_section');
+
 
   function resetItems() {
-    var mobile_choices = document.getElementsByClassName('date_selection_item');
     Array.prototype.forEach.call(mobile_choices, function (el) {
-      el.classList.remove('active')
+      el.classList.remove('active');
+    })
+    Array.prototype.forEach.call(chart_settings_values, function (el) {
+      el.style.display = "None";
     })
   }
 
@@ -25,6 +35,9 @@
 
     resetItems();
     elem.classList.add('active');
+    Array.prototype.forEach.call(one_month_sections, function (el) {
+      el.style.display = "Block";
+    })
 
     drawChart();
   }
@@ -33,6 +46,9 @@
     djangoData = {{ three_month.data|safe }};
     resetItems();
     elem.classList.add('active');
+    Array.prototype.forEach.call(three_month_sections, function (el) {
+      el.style.display = "Block";
+    })
     drawChart();
   }
 
@@ -40,6 +56,9 @@
     djangoData = {{ six_month.data|safe }};
     resetItems();
     elem.classList.add('active');
+    Array.prototype.forEach.call(six_month_sections, function (el) {
+      el.style.display = "Block";
+    })
     drawChart();
   }
 
@@ -47,6 +66,9 @@
     djangoData = {{ one_year.data|safe }};
     resetItems();
     elem.classList.add('active');
+    Array.prototype.forEach.call(one_year_sections, function (el) {
+      el.style.display = "Block";
+    })
     drawChart();
   }
 
@@ -54,6 +76,9 @@
     djangoData = {{ all_time.data|safe }};
     resetItems();
     elem.classList.add('active');
+    Array.prototype.forEach.call(all_time_sections, function (el) {
+      el.style.display = "Block";
+    })
     drawChart();
   }
 
@@ -61,7 +86,6 @@
     var data = google.visualization.arrayToDataTable(djangoData);
     var showEvery = parseInt(data.getNumberOfRows() / 3);
     var options = {
-      // title: '',
       curveType: 'function',
       legend: { position: 'none' },
       backgroundColor: '#FFFFFF',
@@ -86,8 +110,6 @@
           fontSize: 12,
           fontName: 'Calibri',
         },
-
-
       },
       colors: ['#B413FE'],
       lineWidth: 4,
@@ -100,7 +122,6 @@
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
     chart.draw(data, options);
     window.addEventListener("resize", drawChart);
-
   }
 </script>
 
@@ -133,14 +154,40 @@
     </div>
     <div class="chart_settings_section">
       <div class="chart_settings_section_header">Change</div>
-      <div class="chart_settings_section_value">
+      <div class="chart_settings_section_value one_month_section">
         {{ one_month.change }}
       </div>
+      <div class="chart_settings_section_value three_month_section">
+        {{ three_month.change }}
+      </div>
+      <div class="chart_settings_section_value six_month_section">
+        {{ six_month.change }}
+      </div>
+      <div class="chart_settings_section_value one_year_section">
+        {{ one_year.change }}
+      </div>
+      <div class="chart_settings_section_value all_time_section">
+        {{ all_time.change }}
+      </div>
+
+
     </div>
     <div class="chart_settings_section">
       <div class="chart_settings_section_header">Average</div>
-      <div class="chart_settings_section_value">
+      <div class="chart_settings_section_value one_month_section">
         {{ one_month.average }}
+      </div>
+      <div class="chart_settings_section_value three_month_section">
+        {{ three_month.average }}
+      </div>
+      <div class="chart_settings_section_value six_month_section">
+        {{ six_month.average }}
+      </div>
+      <div class="chart_settings_section_value one_year_section">
+        {{ one_year.average }}
+      </div>
+      <div class="chart_settings_section_value all_time_section">
+        {{ all_time.average }}
       </div>
     </div>
   </div>
