@@ -157,6 +157,26 @@ p {
   font-size: 1.2em;
 }
 
+.one_month_section {
+  display: block;
+}
+
+.three_month_section {
+  display: none;
+}
+
+.six_month_section {
+  display: none;
+}
+
+.one_year_section {
+  display: none;
+}
+
+.all_time_section {
+  display: none;
+}
+
 /* Dashboard Styles */
 
 .dashboard_header h2 {

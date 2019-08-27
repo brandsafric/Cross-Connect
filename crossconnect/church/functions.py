@@ -10,11 +10,8 @@ def get_service_count_date_range_average(days, services):
     return int(average['attendance_count__avg'])
 
 def get_service_count_date_range_change(services):
-    today = datetime.now()
-    date_delta = today + timedelta(-30)
-    date_range_services = services.filter(date__range=[date_delta, today])
-    recent_service = date_range_services[(date_range_services.count() - 1)]
-    oldest_service = date_range_services[0]
+    recent_service = services[(services.count() - 1)]
+    oldest_service = services[0]
     return recent_service.attendance_count - oldest_service.attendance_count
 
 def get_services_date_range(services, first_date, second_date):

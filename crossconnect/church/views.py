@@ -72,8 +72,6 @@ def add_service(request):
     return render(request, 'church/add_service.html', context)
 
 def service_template(request, id):
-
-
     template = ServiceTemplate.objects.get(pk=id)
     all_services = Service.objects.filter(template=template).order_by('date')
 
@@ -88,7 +86,6 @@ def service_template(request, id):
     six_month_range = get_services_date_range(all_services, today, six_month_delta)
     one_year_range = get_services_date_range(all_services, today, one_year_delta)
     # All services previously declared
-
 
     one_month_average = int(one_month_range.aggregate(Avg('attendance_count'))['attendance_count__avg'])
     three_month_average = int(three_month_range.aggregate(Avg('attendance_count'))['attendance_count__avg'])
