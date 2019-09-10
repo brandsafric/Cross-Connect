@@ -119,8 +119,10 @@
         }
       }
     };
-    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+    var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
     chart.draw(data, options);
+
     window.addEventListener("resize", drawChart);
   }
 </script>
