@@ -17,6 +17,13 @@ def contacts(request):
 
     return render(request, 'crm/contacts.html', context)
 
+def contact_detail(request, id):
+    contact = Contact.objects.get(pk=id)
+    context = {
+        'contact': contact,
+    }
+    return render(request, 'crm/contact_detail.html', context)
+
 
 
 def add_contact(request):
