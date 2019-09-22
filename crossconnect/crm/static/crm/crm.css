@@ -1,258 +1,91 @@
-.select_all_container {
-  margin-left: 2px;
-}
-
-.header {
-  background-image: linear-gradient(#9013FE, #C32AFF);
-  background-color: #9013FE;
-  height: 57px;
-  display: flex;
-  align-items: center;
-}
-
-.crm_control_bar {
+.crm_title {
+  display: block;
+  height: 68px;
   background-color: white;
-  border-bottom: 1px #C8C8C8 solid;
-  height: 50px;
-  display: grid;
-  grid-template-columns: 45px auto 45px;
-}
-
-
-
-.crm_row {
-  background-color: white;
-  border-bottom: 1px #C8C8C8 solid;
-  height: 50px;
-  display: grid;
-  grid-template-columns: 45px auto;
-}
-
-.crm_row p{
-  font-size: 19px;
-  font-family: Roboto;
-  line-height: 15px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.contact_row {
   width: 100%;
-  background-color: white;
-  border-bottom: 1px #C8C8C8 solid;
-  height: 50px;
 }
 
-.contact_row p{
-  padding-left: 2.8%;;
-  font-size: 19px;
-  font-family: Roboto;
-  line-height: 15px;
-  display: inline-block;
-  vertical-align: middle;
+.crm_title h3 {
+    padding-top: 17px;
+    padding-left: 4.5%;
 }
 
-.contact_control_bar {
-  background-color: white;
-  border-bottom: 1px #C8C8C8 solid;
-  height: 50px;
-  display: grid;
-  grid-template-columns: auto 45px;
+.search_container {
+  background-color: #E3E2E2;
+  height: 68px;
+  width: 100%;
+  display: block;
+  overflow: auto;
 }
-
-/* .contact_header {
-  position: fixed;
-} */
-
-.interaction_card {
-  background-color: white;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 15px;
-  width: 80%;
-  box-shadow: 1px 1px 3px 2px #ccc;
-  border-radius: 4px;
-}
-
-.interaction_card p{
-  margin: 0px;
-  text-align: center;
-}
-
-.interaction_icon {
-  position: relative;
-  top: 4;
-  text-align: center;
-}
-
-.interaction_notes {
-  text-align: left;
-  padding-left: 5%;
-  position: relative;
-  bottom: 4;
-  font-size: 14px;
-}
-.filter {
-  margin-top: 10px;
-  padding-left: 1px;
-  width: 33px;
-  height: 33px;
-}
-
-
-/* Customized Checkbox Styling from W3 Schools */
-
-
-/* Customize the label (the container) */
-
-
-
 
 .search_box {
-  width: auto;
-  height: 25px;
-  border: 2px solid #707070;
-  border-radius: 4px;
-  margin-top: 13px;
-  padding-left: 15px;
-  font-size: 16px;
+  background-color: white;
+  height: 48px;
+  width: 96%;
+  margin-left: 10px;
+  margin-right: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto;
+
 }
 
-.int_search {
-  margin-left: 2.8%;
+.search_box_icon {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  bottom: 40px;
+  left: 18px;
+  z-index: 10;
 }
 
+.search_field {
+  border: none;
+  height: 48px;
+  border-radius: 10px;
+  padding-left: 30px;
+  font-size: 1.2em;
+}
 
-#myTable {
-  border-collapse: collapse;
+.row {
+  height: 68px;
   width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
+  background-color: white;
+  border-bottom: 1px solid #E3E2E2;
+  overflow: hidden;
 }
 
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 0;
+.check_circle {
 
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  background-color: #B7B4B4;
+  display: inline-block;
 }
 
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-  height: 53px;
+.row {
+  display: grid;
+  grid-template-columns: 10% auto;
 }
 
-#myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
+.row:hover {
+  background-color: #E3E2E2;
 }
 
-.large_field {
-  width: 100%;
-  height: 50px;
-  font-size: 19px;
-  padding-left: 5px;
-  border-top: 1px;
-  border-left: 0px;
-  border-right: 0px;
-  border-bottom: 1px;
-  border-color: #C8C8C8;
-  border-style: solid;
-
+.row:focus {
+  background-color: #E3E2E2;
 }
 
-.submit-container {
-  text-align: center;
-}
-input[type=submit] {
-    padding:2px 15px;
-    background: green;
-    border:0 none;
-    cursor:pointer;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    margin-top: 5px;
-    text-align: center;
-    width: 80px;
-    height: 25px;
-    font-size: 18px;
-    padding-bottom: 2px;
-    vertical-align: center;
+.row .check_circle_container .check_circle {
+  margin-left: 50%;
+  margin-top: 25px;
 }
 
-
-/* Modal popup */
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.timeline_year {
-  display: block;
-  text-align: center;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.timeline_year p {
-  display: block;
-  text-align: center;
-  font-size: 20px;
-  margin-top: 8px;
-  margin-bottom: 0px;
-}
-
-.timeline_month {
-  display: block;
-  text-align: center;
-  font-size: 18px;
-}
-
-.timeline_day {
+.row .table_value {
+  margin-left: 2%;
   font-size: 16px;
-  font-weight: strong !important;
-  margin-left: 2.8%;
-}
+  margin-top: 24px;
 
-.day {
-  border-bottom: 1px solid black;
-}
-
-
-.control_icon {
-  margin-left: 2.8%;
-  display: block;
 }

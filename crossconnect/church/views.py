@@ -71,7 +71,7 @@ def add_service(request):
 
     return render(request, 'church/add_service.html', context)
 
-def service_template(request, id):
+def service_template_detail(request, id):
     template = ServiceTemplate.objects.get(pk=id)
     all_services = Service.objects.filter(template=template).order_by('date')
 
@@ -147,4 +147,11 @@ def service_template(request, id):
     return render(request, 'church/service_template_detail.html', context)
 
 def service_detail(request, id):
-    return render(request, 'church/service_detail.html')
+
+    service = Service.objects.get(pk=id)
+
+    context = {
+        'service': service
+    }
+
+    return render(request, 'church/service_detail.html', context)

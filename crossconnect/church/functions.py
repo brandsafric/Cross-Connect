@@ -21,5 +21,5 @@ def get_services_count_data(services):
     data = list(services.values_list('date', 'attendance_count'))
     data = list(map(list, data))
     for set in data:
-        set[0] = set[0].strftime('%m/%d/%y')
+        set[0] = set[0].strftime('%m/%d')
     return data

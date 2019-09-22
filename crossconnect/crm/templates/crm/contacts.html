@@ -7,9 +7,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static 'crm/crm.css' %}">
 
+<div class= "crm_title">
+  <h3>Members</h3>
+</div>
 
-
-  <div class="crm_control_bar">
+  <!-- <div class="crm_control_bar">
   <div class="select_all_container">
     <label class="check-container">
       <input type="checkbox" checked="checked" onclick="selectAll();primaryVisible();" id="selectAll">
@@ -22,34 +24,42 @@
         <path fill="#707070" d="M15,19.88C15.04,20.18 14.94,20.5 14.71,20.71C14.32,21.1 13.69,21.1 13.3,20.71L9.29,16.7C9.06,16.47 8.96,16.16 9,15.87V10.75L4.21,4.62C3.87,4.19 3.95,3.56 4.38,3.22C4.57,3.08 4.78,3 5,3V3H19V3C19.22,3 19.43,3.08 19.62,3.22C20.05,3.56 20.13,4.19 19.79,4.62L15,10.75V19.88M7.04,5L11,10.06V15.58L13,17.58V10.05L16.96,5H7.04Z" />
       </svg>
     </div>
+  </div> -->
+
+<div class="search_container">
+  <div class="search_box">
+    <label for="search"></label>
+    <input class="search_field" id="search">
   </div>
+</div>
 
+<div style="width:0px;height:0px">
+  <div class="search_box_icon">
+    <svg width="19px" height="22px" style="display:block;">
+      <use xlink:href="#search-icon"/>
+    </svg>
+  </div>
+</div>
 
-
-<table id="myTable">
+<div class="row">
+  <div class="check_circle">
+  </div>
+</div>
 
 {% for contact in contacts %}
-    <tr class="crm_row" >
-      <td >
-        <label class="check-container">
-          <input type="checkbox" checked="checked" onclick="primaryVisible()" class="contact_ck" name="{{contact.id}}">
-          <span class="checkmark"></span>
-        </label>
-      </td>
-        <td tabindex="2"onclick="window.location='http://localhost:8000/app/contacts/{{contact.id}}'">
-          <p>{{ contact.first_name }}  {{ contact.last_name }}</p>
-        </td>
-    </tr>
+
+<div class="row" tabindex="{{ forloop.counter}}">
+  <div class="check_circle_container">
+    <div class="check_circle">
+    </div>
+  </div>
+  <div class="table_value">{{ contact.first_name }} {{ contact.last_name }}</div>
+</div>
 
 
 {% endfor %}
 
 
-</table>
-
-
-<!-- <button class="primary_button edit_button">+</button>
-<a> -->
 
 
 
